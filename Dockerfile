@@ -76,7 +76,7 @@ RUN export buildDeps=' \
     cd python-etcd && \
     python3 setup.py install && \
     cd .. && rm -rf python-etcd && \ 
-    apt-get install mysql-client && \   
+    apt-get install -y mysql-client && \   
     apt-get -y purge --auto-remove $buildDeps && \
     apt-get clean && rm -rf /usr/src/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
