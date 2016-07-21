@@ -9,7 +9,16 @@ ENV CONSUL_TPL_VERSION 0.10.0
 ENV LUA_LIB /usr/lib/
 ENV LUA_INC /usr/include/lua5.1
 
-RUN apt-get update && \
+RUN export buildDeps=' \
+    build-essential \
+    liblua5.1-0-dev \
+    lua-sec-dev \
+    git \
+    libffi-dev \
+    python3-dev \
+    python3-pip \
+    ' && \
+    apt-get update && \
     apt-get install -y \
     runit \
     mysql-client \
@@ -24,16 +33,16 @@ RUN apt-get update && \
     liblua5.1-0 \
     lua-json && \
     adduser --system --no-create-home --disabled-login --group --disabled-password nginx && \
-    wget https://github.com/hashicorp/consul-template/archive/v0.10.0.tar.gz && \
+    curl -sSL https://github.com/hashicorp/consul-template/archive/v0.10.0.tar.gz -o v0.10.0.tar.gz && \
     tar -xf v0.10.0.tar.gz  -C /usr/local/bin --strip-components=1 && \
     rm v0.10.0.tar.gz && \
     curl -sSL https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 -o /usr/local/bin/confd && \
     chmod +x /usr/local/bin/confd && \
-    wget https://github.com/chaoslawful/lua-nginx-module/archive/v${NGINX_LUA}.tar.gz -o /usr/src/lua-nginx-module.tar.gz && \
+    curl -sSL https://github.com/chaoslawful/lua-nginx-module/archive/v${NGINX_LUA}.tar.gz -o /usr/src/lua-nginx-module.tar.gz && \
     tar -xf /usr/src/lua-nginx-module.tar.gz -C /usr/src && \
-    wget https://github.com/simpl/ngx_devel_kit/archive/v${NGINX_DEV_KIT}.tar.gz -o /usr/src/ngx_devel_kit.tar.gz && \
+    curl -sSL https://github.com/simpl/ngx_devel_kit/archive/v${NGINX_DEV_KIT}.tar.gz -o /usr/src/ngx_devel_kit.tar.gz && \
     tar -xf /usr/src/ngx_devel_kit.tar.gz -C /usr/src && \
-    wget -sSL http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -o /usr/src/nginx-${NGINX_VERSION}.tar.gz && \
+    curl -sSL -sSL http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -o /usr/src/nginx-${NGINX_VERSION}.tar.gz && \
     tar -xf /usr/src/nginx-${NGINX_VERSION}.tar.gz  -C /usr/src && \
     ln -s `find /usr/lib -iname liblua5.1.so` /usr/lib/liblua.so && \
     cd /usr/src/nginx-${NGINX_VERSION} && \
