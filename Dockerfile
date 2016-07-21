@@ -33,8 +33,8 @@ RUN export buildDeps=' \
     lua-json && \
     adduser --system --no-create-home --disabled-login --group --disabled-password nginx && \
     curl -sSL https://github.com/hashicorp/consul-template/archive/v0.10.0.tar.gz && \
-    tar -xf consul-template_${CONSUL_TPL_VERSION}.tar.gz  -C /usr/local/bin --strip-components=1 && \
-    rm consul-template_${CONSUL_TPL_VERSION}_linux_amd64.tar.gz && \
+    tar xf consul-template_${CONSUL_TPL_VERSION}.tar.gz  -C /usr/local/bin --strip-components=1 && \
+    rm consul-template_${CONSUL_TPL_VERSION}.tar.gz && \
     curl -sSL https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 -o /usr/local/bin/confd && \
     chmod +x /usr/local/bin/confd && \
     curl -sSL https://github.com/chaoslawful/lua-nginx-module/archive/v${NGINX_LUA}.tar.gz -o /usr/src/lua-nginx-module.tar.gz && \
