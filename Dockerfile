@@ -19,7 +19,7 @@ RUN export buildDeps=' \
     python3-pip \
     ' && \
     apt-get update && \
-    apt-get install --no-install-recommends -y $buildDeps \
+    apt-get install --no-install-recommends --fix-missing -y $buildDeps \
     runit \
     python3 \
     python3-six \
