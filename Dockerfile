@@ -31,7 +31,7 @@ RUN export buildDeps=' \
     liblua5.1-0 \
     lua-json && \
     adduser --system --no-create-home --disabled-login --group --disabled-password nginx && \
-    curl -sSL https://github.com/hashicorp/consul-template/releases/download/v${CONSUL_TPL_VERSION}/consul-template_${CONSUL_TPL_VERSION}_linux_amd64.tar.gz -o consul-template_${CONSUL_TPL_VERSION}_linux_amd64.tar.gz && \
+    curl -sSL https://github.com/hashicorp/consul-template/archive/v0.10.0.tar.gz -o consul-template_${CONSUL_TPL_VERSION}_linux_amd64.tar.gz && \
     tar -xf consul-template_${CONSUL_TPL_VERSION}_linux_amd64.tar.gz  -C /usr/local/bin --strip-components=1 && \
     rm consul-template_${CONSUL_TPL_VERSION}_linux_amd64.tar.gz && \
     curl -sSL https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 -o /usr/local/bin/confd && \
