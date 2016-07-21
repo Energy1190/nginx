@@ -25,8 +25,8 @@ RUN apt-get update && \
     lua-json && \
     adduser --system --no-create-home --disabled-login --group --disabled-password nginx && \
     wget https://github.com/hashicorp/consul-template/archive/v0.10.0.tar.gz && \
-    tar -xf v${CONSUL_TPL_VERSION}.tar.gz  -C /usr/local/bin --strip-components=1 && \
-    rm v${CONSUL_TPL_VERSION}.tar.gz && \
+    tar -xf v0.10.0.tar.gz  -C /usr/local/bin --strip-components=1 && \
+    rm v0.10.0.tar.gz && \
     curl -sSL https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 -o /usr/local/bin/confd && \
     chmod +x /usr/local/bin/confd && \
     wget https://github.com/chaoslawful/lua-nginx-module/archive/v${NGINX_LUA}.tar.gz -o /usr/src/lua-nginx-module.tar.gz && \
